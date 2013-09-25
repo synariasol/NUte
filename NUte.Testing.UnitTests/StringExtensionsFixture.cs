@@ -1,4 +1,6 @@
-﻿using Machine.Specifications;
+﻿using System;
+using System.Collections.Generic;
+using Machine.Specifications;
 
 namespace NUte.Testing.UnitTests
 {
@@ -48,6 +50,76 @@ namespace NUte.Testing.UnitTests
             {
                 private Because of = () => _result = StringExtensions.IsEqual("Source", "Value");
                 private It should_return_false = () => _result.ShouldBeFalse();
+            }
+        }
+
+        public sealed class FormatObjectMethod
+        {
+            private const string Pattern = "something/{key1}/else/{key2}";
+            private static readonly object Values = new
+                {
+                    key1 = "value1",
+                    key2 = "value2"
+                };
+
+            private static string _result;
+
+            [Subject(typeof(StringExtensions), "Format<object>")]
+            public sealed class when_invoked_with_a_null_pattern
+            {
+                private Because of = () => _result = StringExtensions.Format(null, Values);
+                private It should_return_null = () => _result.ShouldBeNull();
+            }
+
+            [Subject(typeof(StringExtensions), "Format<object>")]
+            public sealed class when_invoked_with_a_null_values_object
+            {
+                private static Exception _exception;
+
+                private Because of = () => _exception = Catch.Exception(() => StringExtensions.Format(Pattern, null));
+                private It should_throw_an_ArgumentNullException = () => _exception.ShouldBeOfType<ArgumentNullException>();
+            }
+
+            [Subject(typeof(StringExtensions), "Format<object>")]
+            public sealed class when_invoked_with_a_pattern_and_a_values_object
+            {
+                private Because of = () => _result = StringExtensions.Format(Pattern, Values);
+                private It should_return_a_formatted_string = () => _result.ShouldBeEqualIgnoringCase("something/value1/else/value2");
+            }
+        }
+
+        public sealed class FormatDictionaryMethod
+        {
+            private const string Pattern = "something/{key1}/else/{key2}";
+            private static readonly IDictionary<string, string> Values = new Dictionary<string, string>
+                {
+                    {"key1", "value1"},
+                    {"key2", "value2"}
+                };
+
+            private static string _result;
+
+            [Subject(typeof(StringExtensions), "Format<Dictionary>")]
+            public sealed class when_invoked_with_a_null_pattern
+            {
+                private Because of = () => _result = StringExtensions.Format(null, Values);
+                private It should_return_null = () => _result.ShouldBeNull();
+            }
+
+            [Subject(typeof(StringExtensions), "Format<Dictionary>")]
+            public sealed class when_invoked_with_a_null_values_dictionary
+            {
+                private static Exception _exception;
+
+                private Because of = () => _exception = Catch.Exception(() => StringExtensions.Format(Pattern, null));
+                private It should_throw_an_ArgumentNullException = () => _exception.ShouldBeOfType<ArgumentNullException>();
+            }
+
+            [Subject(typeof(StringExtensions), "Format<Dictionary>")]
+            public sealed class when_invoked_with_a_pattern_and_a_values_dictionary
+            {
+                private Because of = () => _result = StringExtensions.Format(Pattern, Values);
+                private It should_return_a_formatted_string = () => _result.ShouldBeEqualIgnoringCase("something/value1/else/value2");
             }
         }
     }

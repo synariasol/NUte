@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Text.RegularExpressions;
+using NUte.Validation;
 
 namespace NUte
 {
@@ -14,6 +18,51 @@ namespace NUte
             return ignoreCase
                        ? source.Equals(value, StringComparison.OrdinalIgnoreCase)
                        : source.Equals(value);
+        }
+
+        public static string Format(this string pattern, object values)
+        {
+            if (pattern != null)
+            {
+                Argument.NotNull(() => values);
+
+                var tokensDictionary = new Dictionary<string, string>();
+
+                foreach (PropertyDescriptor propertyDescriptor in TypeDescriptor.GetProperties(values))
+                {
+                    var propertyValue = propertyDescriptor.GetValue(values);
+                    var value = propertyValue == null
+                                    ? string.Empty
+                                    : propertyValue.ToString();
+
+                    tokensDictionary.Add(propertyDescriptor.Name, value);
+                }
+
+                return pattern.Format(tokensDictionary);
+            }
+
+            return null;
+        }
+
+        public static string Format(this string pattern, IDictionary<string, string> values)
+        {
+            if (pattern != null)
+            {
+                Argument.NotNull(() => values);
+
+                var result = pattern;
+
+                foreach (var value in values)
+                {
+                    var placeholder = string.Concat(@"\{", value.Key, @"\}");
+
+                    result = Regex.Replace(result, placeholder, value.Value);
+                }
+
+                return result;
+            }
+
+            return null;
         }
     }
 }
