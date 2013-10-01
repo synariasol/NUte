@@ -52,11 +52,11 @@ namespace NUte
 
                 var result = pattern;
 
-                foreach (var value in values)
+                foreach (var key in values.Keys)
                 {
-                    var placeholder = string.Concat(@"\{", value.Key, @"\}");
+                    var placeholder = string.Concat(@"\{", key, @"\}");
 
-                    result = Regex.Replace(result, placeholder, value.Value);
+                    result = Regex.Replace(result, placeholder, values[key]);
                 }
 
                 return result;

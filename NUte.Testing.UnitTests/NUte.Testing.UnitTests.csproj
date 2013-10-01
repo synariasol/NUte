@@ -30,9 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="EnumExtensionsFixture.cs" />
+    <Compile Include="EnumDataAttributeFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringExtensionsFixture.cs" />
     <Compile Include="Validation\ArgumentFixture.cs" />
+    <Compile Include="Validation\ValidationMessages.cs" />
     <Compile Include="Validation\VerifyFixture.cs" />
     <Compile Include="Validation\ValidationFixtureBase.cs" />
   </ItemGroup>

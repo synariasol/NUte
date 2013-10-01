@@ -50,7 +50,7 @@ namespace NUte.Testing.UnitTests.Validation
                 private Because of = () => Exception = Catch.Exception(() => Argument.NotNullOrEmpty(() => Value));
                 private It should_throw_an_ArgumentException = () => Exception.ShouldBeOfType<ArgumentException>();
                 private It should_set_the_exception_parameter_name = () => VerifyArgumentExceptionParamName();
-                private It should_set_the_exception_message = () => VerifyExceptionMessage(EmptyMessage);
+                private It should_set_the_exception_message = () => VerifyExceptionMessage(ValidationMessages.EmptyMessage);
             }
 
             [Subject(typeof(Argument), "NotNullOrEmpty<string>")]
@@ -83,7 +83,7 @@ namespace NUte.Testing.UnitTests.Validation
                 private Because of = () => Exception = Catch.Exception(() => Argument.NotNullOrWhiteSpace(() => Value));
                 private It should_throw_an_ArgumentException = () => Exception.ShouldBeOfType<ArgumentException>();
                 private It should_set_the_exception_parameter_name = () => VerifyArgumentExceptionParamName();
-                private It should_set_the_exception_message = () => VerifyExceptionMessage(WhiteSpaceMessage);
+                private It should_set_the_exception_message = () => VerifyExceptionMessage(ValidationMessages.WhiteSpaceMessage);
             }
 
             [Subject(typeof(Argument), "NotNullOrWhiteSpace")]
@@ -116,7 +116,7 @@ namespace NUte.Testing.UnitTests.Validation
                 private Because of = () => Exception = Catch.Exception(() => Argument.NotNullOrEmpty(() => Value));
                 private It should_throw_an_ArgumentException = () => Exception.ShouldBeOfType<ArgumentException>();
                 private It should_set_the_exception_parameter_name = () => VerifyArgumentExceptionParamName();
-                private It should_set_the_exception_message = () => VerifyExceptionMessage(EmptyMessage);
+                private It should_set_the_exception_message = () => VerifyExceptionMessage(ValidationMessages.EmptyMessage);
             }
 
             [Subject(typeof(Argument), "NotNullOrEmpty<IEnumerable>")]
@@ -149,7 +149,7 @@ namespace NUte.Testing.UnitTests.Validation
                 private Because of = () => Exception = Catch.Exception(() => Argument.NotNullOrNullElements(() => Value));
                 private It should_throw_an_ArgumentException = () => Exception.ShouldBeOfType<ArgumentException>();
                 private It should_set_the_exception_parameter_name = () => VerifyArgumentExceptionParamName();
-                private It should_set_the_exception_message = () => VerifyExceptionMessage(NullElementsMessage);
+                private It should_set_the_exception_message = () => VerifyExceptionMessage(ValidationMessages.NullElementsMessage);
             }
 
             [Subject(typeof(Argument), "NotNullOrNullElements")]
@@ -182,7 +182,7 @@ namespace NUte.Testing.UnitTests.Validation
                 private Because of = () => Exception = Catch.Exception(() => Argument.NotNullEmptyOrNullElements(() => Value));
                 private It should_throw_an_ArgumentException = () => Exception.ShouldBeOfType<ArgumentException>();
                 private It should_set_the_exception_parameter_name = () => VerifyArgumentExceptionParamName();
-                private It should_set_the_exception_message = () => VerifyExceptionMessage(EmptyMessage);
+                private It should_set_the_exception_message = () => VerifyExceptionMessage(ValidationMessages.EmptyMessage);
             }
 
             [Subject(typeof(Argument), "NotNullEmptyOrNullElements")]
@@ -193,7 +193,7 @@ namespace NUte.Testing.UnitTests.Validation
                 private Because of = () => Exception = Catch.Exception(() => Argument.NotNullEmptyOrNullElements(() => Value));
                 private It should_throw_an_ArgumentException = () => Exception.ShouldBeOfType<ArgumentException>();
                 private It should_set_the_exception_parameter_name = () => VerifyArgumentExceptionParamName();
-                private It should_set_the_exception_message = () => VerifyExceptionMessage(NullElementsMessage);
+                private It should_set_the_exception_message = () => VerifyExceptionMessage(ValidationMessages.NullElementsMessage);
             }
 
             [Subject(typeof(Argument), "NotNullEmptyOrNullElements")]
@@ -226,7 +226,7 @@ namespace NUte.Testing.UnitTests.Validation
                 private Because of = () => Exception = Catch.Exception(() => Argument.NotNullEmptyOrNullWhiteSpaceElements(() => Value));
                 private It should_throw_an_ArgumentException = () => Exception.ShouldBeOfType<ArgumentException>();
                 private It should_set_the_exception_parameter_name = () => VerifyArgumentExceptionParamName();
-                private It should_set_the_exception_message = () => VerifyExceptionMessage(EmptyMessage);
+                private It should_set_the_exception_message = () => VerifyExceptionMessage(ValidationMessages.EmptyMessage);
             }
 
             [Subject(typeof(Argument), "NotNullEmptyOrNullWhiteSpaceElements")]
@@ -237,7 +237,7 @@ namespace NUte.Testing.UnitTests.Validation
                 private Because of = () => Exception = Catch.Exception(() => Argument.NotNullEmptyOrNullWhiteSpaceElements(() => Value));
                 private It should_throw_an_ArgumentException = () => Exception.ShouldBeOfType<ArgumentException>();
                 private It should_set_the_exception_parameter_name = () => VerifyArgumentExceptionParamName();
-                private It should_set_the_exception_message = () => VerifyExceptionMessage(NullElementsMessage);
+                private It should_set_the_exception_message = () => VerifyExceptionMessage(ValidationMessages.NullElementsMessage);
             }
 
             [Subject(typeof(Argument), "NotNullEmptyOrNullWhiteSpaceElements")]
@@ -248,7 +248,7 @@ namespace NUte.Testing.UnitTests.Validation
                 private Because of = () => Exception = Catch.Exception(() => Argument.NotNullEmptyOrNullWhiteSpaceElements(() => Value));
                 private It should_throw_an_ArgumentException = () => Exception.ShouldBeOfType<ArgumentException>();
                 private It should_set_the_exception_parameter_name = () => VerifyArgumentExceptionParamName();
-                private It should_set_the_exception_message = () => VerifyExceptionMessage(WhiteSpaceElementsMessage);
+                private It should_set_the_exception_message = () => VerifyExceptionMessage(ValidationMessages.WhiteSpaceElementsMessage);
             }
 
             [Subject(typeof(Argument), "NotNullEmptyOrNullWhiteSpaceElements")]
