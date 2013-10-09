@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BoolExtensions.cs" />
     <Compile Include="EnumDataAttribute.cs" />
     <Compile Include="EnumExtensions.cs" />
     <Compile Include="StringExtensions.cs" />
