@@ -19,6 +19,13 @@ namespace NUte.Validation
             NotNull<object>(parameter, exception);
         }
 
+        public static void NotDefault<TType>(Expression<Func<TType>> parameter, Action<string, string, bool> exception)
+        {
+            var defaultValue = default(TType);
+
+            NotNull(parameter, exception, value => value.Equals(defaultValue));
+        }
+
         public static void NotNullOrEmpty(Expression<Func<string>> parameter, Action<string, string, bool> exception)
         {
             var parameterInfo = NotNull(parameter, exception);
@@ -88,12 +95,15 @@ namespace NUte.Validation
             }
         }
 
-        private static ParameterInfo<TValue> NotNull<TValue>(Expression<Func<TValue>> parameter, Action<string, string, bool> exception)
+        private static ParameterInfo<TValue> NotNull<TValue>(Expression<Func<TValue>> parameter, Action<string, string, bool> exception, Func<object, bool> compare = null)
         {
             var parameterInfo = GetParameterInfo(parameter);
             var value = parameterInfo.Value as object;
+            var isEqual = compare == null
+                              ? value == null
+                              : compare.Invoke(value);
 
-            if (value == null && exception != null)
+            if (isEqual && exception != null)
             {
                 exception.Invoke(null, parameterInfo.Name, true);
             }

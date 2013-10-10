@@ -30,6 +30,28 @@ namespace NUte.Testing.UnitTests.Validation
             }
         }
 
+        public sealed class NotDefaultMethod
+        {
+            [Subject(typeof(Argument), "NotDefault")]
+            public sealed class when_invoked_with_a_default_int
+                : ValidationFixtureBase<int>
+            {
+                private Establish context = () => Value = default(int);
+                private Because of = () => Exception = Catch.Exception(() => Argument.NotDefault(() => Value));
+                private It should_throw_an_ArgumentNullException = () => Exception.ShouldBeOfType<ArgumentNullException>();
+                private It should_set_the_exception_parameter_name = () => VerifyArgumentNullExceptionParamName();
+            }
+
+            [Subject(typeof(Argument), "NotDefault")]
+            public sealed class when_invoked_with_a_non_default_int
+                : ValidationFixtureBase<int>
+            {
+                private Establish context = () => Value = 10;
+                private Because of = () => Exception = Catch.Exception(() => Argument.NotDefault(() => Value));
+                private It should_not_throw_an_exception = () => Exception.ShouldBeNull();
+            }
+        }
+
         public sealed class NotNullOrEmptyMethod_String
         {
             [Subject(typeof(Argument), "NotNullOrEmpty<string>")]

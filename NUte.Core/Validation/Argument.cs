@@ -12,6 +12,11 @@ namespace NUte.Validation
             Validator.NotNull(argument, (m, a, n) => ThrowException(message ?? m, a, n));
         }
 
+        public static void NotDefault<TType>(Expression<Func<TType>> argument, string message = null)
+        {
+            Validator.NotDefault(argument, (m, a, n) => ThrowException(message ?? m, a, n));
+        }
+
         public static void NotNullOrEmpty(Expression<Func<string>> argument, string message = null)
         {
             Validator.NotNullOrEmpty(argument, (m, a, n) => ThrowException(message ?? m, a, n));
