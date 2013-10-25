@@ -10,8 +10,9 @@ namespace NUte.Validation
     {
         private sealed class ParameterInfo<TValue>
         {
-            public string Name { get; set; }
             public TValue Value { get; set; }
+
+            public Func<string> Name { get; set; }
         }
 
         public static void NotNull(Expression<Func<object>> parameter, Action<string, string, bool> exception)
@@ -32,7 +33,7 @@ namespace NUte.Validation
 
             if (string.IsNullOrEmpty(parameterInfo.Value) && exception != null)
             {
-                exception.Invoke("The parameter value is empty.", parameterInfo.Name, false);
+                exception.Invoke("The parameter value is empty.", parameterInfo.Name.Invoke(), false);
             }
         }
 
@@ -42,7 +43,7 @@ namespace NUte.Validation
 
             if (string.IsNullOrWhiteSpace(parameterInfo.Value) && exception != null)
             {
-                exception.Invoke("The parameter value is whitespace.", parameterInfo.Name, false);
+                exception.Invoke("The parameter value is whitespace.", parameterInfo.Name.Invoke(), false);
             }
         }
 
@@ -65,11 +66,11 @@ namespace NUte.Validation
         {
             var parameterInfo = NotNull(parameter, exception);
 
-            ValidateElements(parameterInfo.Name, parameterInfo.Value, false, false, exception);
+            ValidateElements(parameterInfo.Name.Invoke(), parameterInfo.Value, false, false, exception);
 
             if (parameterInfo.Value.Any(string.IsNullOrWhiteSpace) && exception != null)
             {
-                exception.Invoke("The parameter value contains at least one whitespace element.", parameterInfo.Name, false);
+                exception.Invoke("The parameter value contains at least one whitespace element.", parameterInfo.Name.Invoke(), false);
             }
         }
 
@@ -77,7 +78,7 @@ namespace NUte.Validation
         {
             var parameterInfo = NotNull(parameter, exception);
 
-            ValidateElements(parameterInfo.Name, parameterInfo.Value, allowEmpty, allowNullElements, exception);
+            ValidateElements(parameterInfo.Name.Invoke(), parameterInfo.Value, allowEmpty, allowNullElements, exception);
         }
 
         private static void ValidateElements(string parameterName, IEnumerable parameterValue, bool allowEmpty, bool allowNullElements, Action<string, string, bool> exception)
@@ -105,7 +106,7 @@ namespace NUte.Validation
 
             if (isEqual && exception != null)
             {
-                exception.Invoke(null, parameterInfo.Name, true);
+                exception.Invoke(null, parameterInfo.Name.Invoke(), true);
             }
 
             return parameterInfo;
@@ -123,8 +124,8 @@ namespace NUte.Validation
 
             return new ParameterInfo<TValue>
                 {
-                    Name = GetParameterName(parameter),
-                    Value = @delegate.Invoke()
+                    Value = @delegate.Invoke(),
+                    Name = () => GetParameterName(parameter)
                 };
         }
 
