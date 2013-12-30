@@ -1,11 +1,11 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("nUte")]
-[assembly: AssemblyDescription("A utility library for common .NET tasks")]
+[assembly: AssemblyTitle("NUte")]
+[assembly: AssemblyDescription("A library of utility and helper methods for common coding tasks")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Synaria Solutions Limited")]
-[assembly: AssemblyProduct("nUte")]
+[assembly: AssemblyProduct("NUte")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

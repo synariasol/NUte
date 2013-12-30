@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>NUte</id>
+        <version>1.0.0</version>
+        <title>NUte</title>
+        <authors>Synaria Solutions Limited</authors>
+        <owners>Synaria Solutions Limited</owners>
+        <projectUrl>https://github.com/synariasol/NUte</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Pronounced 'Newt', this library is a set of utility and helper methods for common coding tasks. This includes runtime validations, enum metadata extensions and string formatting.</description>
+        <language />
+    </metadata>
+    <files>
+        <file src="NUte.Core\bin\Release\NUte.dll" target="lib\net45\NUte.dll" />
+    </files>
+</package>

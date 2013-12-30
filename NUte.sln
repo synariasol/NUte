@@ -5,6 +5,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUte.Testing.UnitTests", "N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUte.Core", "NUte.Core\NUte.Core.csproj", "{7CE502B7-C50F-458F-A014-917CB3D434A0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{88969183-0899-41F9-B838-8879907C7FFC}"
+	ProjectSection(SolutionItems) = preProject
+		NUte.nuspec = NUte.nuspec
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
