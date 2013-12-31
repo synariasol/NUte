@@ -63,14 +63,9 @@ public enum Filter
   DateOfBirth = 29
 }
 
-pubilc string GetQueryFilters(Filter filter)
+pubilc string GetQueryValue(Filter filter)
 {
-  var queryFilters = new List<string>();
-  var filterValue = typeof(Filter).GetEnumData(filter);
-  
-  queryFilters.Add(filterValue);
-  
-  ...
+  return typeof(Filter).GetEnumData(filter);
 }
 ```
 
@@ -83,11 +78,28 @@ pubilc Filter? GetFilter(string queryValue)
 }
 ```
 
+## String Formatting
+
+A set of extension methods are available that build upon string formatting so named tokens can be used as placeholders. The values for these placeholders can be defined either using an anonymous object or an ```IDictionary<string, string>```.
+
+```
+public string GetRoute(int id, SortOptions sort)
+{
+  var routePattern = "/users/{id}/{sort}";
+  
+  return routePattern.Format(new
+  {
+    id = id,
+    sort = sort
+  });
+}
+```
+
 ## Others
 
 For convenience, some additional helper methods are available. These include:
 
-* Lower case conversion for boolean values.
 * String equality validation.
-* String formatting using anonymous object properties and dictionary values.
+* Lower case conversion for boolean values.
+
 
