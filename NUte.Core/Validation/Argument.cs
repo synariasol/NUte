@@ -53,18 +53,20 @@ namespace NUte.Validation
 
             if (!valid)
             {
-                ThrowException(message, null, false);
+                ThrowException(message, () => null, false);
             }
         }
 
-        private static void ThrowException(string message, string argumentName, bool isNull)
+        private static void ThrowException(string message, Func<string> argumentName, bool isNull)
         {
+            var name = argumentName.Invoke();
+
             if (isNull)
             {
-                throw new ArgumentNullException(argumentName, message);
+                throw new ArgumentNullException(name, message);
             }
 
-            throw new ArgumentException(message, argumentName);            
+            throw new ArgumentException(message, name);            
         }
     }
 }

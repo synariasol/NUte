@@ -7,13 +7,39 @@ namespace NUte
 {
     public static class EnumExtensions
     {
+        #region ToData
+
+        public static string GetEnumData<TEnum>(this TEnum value)
+            where TEnum : struct
+        {
+            Argument.NotNull(() => value);
+
+            return GetEnumData(typeof(TEnum), value);
+        }
+
+        public static string GetEnumData<TEnum>(this Enum enumType, TEnum value)
+            where TEnum : struct
+        {
+            Argument.NotNull(() => enumType);
+
+            return GetEnumData(typeof(TEnum), value);
+        }
+
+        public static string GetEnumData(this Enum enumType, object value)
+        {
+            Argument.NotNull(() => enumType);
+
+            var baseType = enumType.GetType();
+            
+            return GetEnumData(baseType, value);
+        }
+
         public static string GetEnumData<TEnum>(this Type enumType, TEnum value)
             where TEnum : struct
         {
-            if (enumType != null)
-            {
-                Argument.Verify(() => enumType == typeof (TEnum), "The specified enumeration type is invalid.");
-            }
+            Argument.NotNull(() => enumType);
+
+            Argument.Verify(() => enumType == typeof(TEnum), "The specified enumeration type is invalid.");
 
             return GetEnumData(enumType, (object) value);
         }
@@ -33,6 +59,10 @@ namespace NUte
                     select attribute.Data).SingleOrDefault();
         }
 
+        #endregion
+
+        #region FromData
+
         public static TEnum? GetEnumFromData<TEnum>(this Type enumType, string data)
             where TEnum : struct
         {
@@ -49,11 +79,13 @@ namespace NUte
             Argument.NotNull(() => data);
 
             Argument.Verify(() => enumType.IsEnum, "The specified type is not an enumeration.");
-            
+
             return (from field in enumType.GetFields()
                     let attribute = field.GetCustomAttribute<EnumDataAttribute>()
                     where attribute != null && attribute.Data.IsEqual(data) 
                     select field.GetValue(null)).SingleOrDefault();
         }
+
+        #endregion
     }
 }
