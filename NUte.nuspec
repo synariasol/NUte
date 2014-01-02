@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>NUte</id>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
         <title>NUte</title>
         <authors>Synaria Solutions Limited</authors>
         <owners>Synaria Solutions Limited</owners>
