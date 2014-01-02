@@ -74,7 +74,7 @@ An enum value can also be resolved using it's associated data value.
 ```
 pubilc Filter? GetFilter(string queryValue)
 {
-  return typeof(Filter).GetEnumFromData(queryValue);
+  return typeof(Filter).GetEnumFromData<Filter>(queryValue);
 }
 ```
 
@@ -101,5 +101,9 @@ For convenience, some additional helper methods are available. These include:
 
 * String equality validation.
 * Lower case conversion for boolean values.
+
+## Installation
+
+You can either get the source code here on GitHub and build the assemblies yourself, or download them from [NuGet](https://www.nuget.org/packages/NUte/).
 
 
