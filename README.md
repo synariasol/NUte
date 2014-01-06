@@ -19,7 +19,7 @@ public User CreateUser(string username)
 }
 ```
 
-Due to the nature of method arguments, nested object properties are not supported. Instead, a ```Argument.Verify()``` method has been implemented where boolean checks can be performed.
+Nested properties are supported, but will resolve to the property name instead of the argument name. Furthermore, an ```Argument.Verify()``` method has been implemented where boolean checks can be performed.
 
 ```
 public void UpdateUser(User user)
