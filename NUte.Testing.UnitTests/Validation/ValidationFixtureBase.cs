@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Machine.Specifications;
 
 namespace NUte.Testing.UnitTests.Validation
@@ -8,9 +9,14 @@ namespace NUte.Testing.UnitTests.Validation
         protected static TValue Value;
         protected static Exception Exception;
 
-        protected static void VerifyExceptionMessage(string message)
+        protected static void VerifyExceptionMessage(string message, params object[] arguments)
         {
             Exception.ShouldNotBeNull();
+
+            if (arguments.Any())
+            {
+                message = string.Format(message, arguments);
+            }
 
             ValidationMessages.VerifyMessage(Exception.Message, message, "Value");
         }

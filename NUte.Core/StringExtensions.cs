@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Text.RegularExpressions;
 using NUte.Validation;
 
@@ -26,16 +25,14 @@ namespace NUte
             {
                 Argument.NotNull(() => values);
 
+                var dictionary = values.ToDictionary();
                 var tokensDictionary = new Dictionary<string, string>();
 
-                foreach (PropertyDescriptor propertyDescriptor in TypeDescriptor.GetProperties(values))
+                foreach (var item in dictionary)
                 {
-                    var propertyValue = propertyDescriptor.GetValue(values);
-                    var value = propertyValue == null
-                                    ? string.Empty
-                                    : propertyValue.ToString();
+                    var value = item.Value == null ? null : item.Value.ToString();
 
-                    tokensDictionary.Add(propertyDescriptor.Name, value);
+                    tokensDictionary.Add(item.Key, value);
                 }
 
                 return pattern.Format(tokensDictionary);
@@ -55,8 +52,8 @@ namespace NUte
                 foreach (var key in values.Keys)
                 {
                     var placeholder = string.Concat(@"\{", key, @"\}");
-
-                    result = Regex.Replace(result, placeholder, values[key]);
+                    
+                    result = Regex.Replace(result, placeholder, values[key] ?? string.Empty);
                 }
 
                 return result;

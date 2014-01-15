@@ -304,5 +304,27 @@ namespace NUte.Testing.UnitTests.Validation
                 private It should_not_throw_an_exception = () => Exception.ShouldBeNull();
             }
         }
+
+        public sealed class VerifyMethod_WithArgumentName
+        {
+            [Subject(typeof(Argument), "Verify_WithArgumentName")]
+            public sealed class when_invoked_with_a_false_condition
+                : ValidationFixtureBase<Func<bool>>
+            {
+                private Establish context = () => Value = () => false;
+                private Because of = () => Exception = Catch.Exception(() => Argument.Verify(Value, "Value", "Test message"));
+                private It should_throw_an_ArgumentException = () => Exception.ShouldBeOfType<ArgumentException>();
+                private It should_set_the_exception_message = () => VerifyExceptionMessage(ValidationMessages.MessageFormat, "Test Message");
+            }
+
+            [Subject(typeof(Argument), "Verify_WithArgumentName")]
+            public sealed class when_invoked_with_a_true_condition
+                : ValidationFixtureBase<Func<bool>>
+            {
+                private Establish context = () => Value = () => true;
+                private Because of = () => Exception = Catch.Exception(() => Argument.Verify(Value, "Value", "Test message"));
+                private It should_not_throw_an_exception = () => Exception.ShouldBeNull();
+            }
+        }
     }
 }

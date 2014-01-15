@@ -49,11 +49,16 @@ namespace NUte.Validation
 
         public static void Verify(Func<bool> condition, string message)
         {
+            Verify(condition, null, message);
+        }
+
+        public static void Verify(Func<bool> condition, string argumentName, string message)
+        {
             var valid = condition != null && condition.Invoke();
 
             if (!valid)
             {
-                ThrowException(message, () => null, false);
+                ThrowException(message, () => argumentName, false);
             }
         }
 
