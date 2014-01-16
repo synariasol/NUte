@@ -1,6 +1,6 @@
 # NUte
 
-Pronounced 'Newt', this library is a set of utility and helper methods for common coding tasks. This includes runtime validations, enum metadata extensions and string formatting.
+Pronounced 'Newt', this library is a set of utility and helper methods for common coding tasks. This includes runtime validations, enum metadata extensions, string formatting and primitive object serialization.
 
 ## Validation
 
@@ -98,7 +98,7 @@ For times when you need a list of properties contained in an object, the ```.ToD
 ```
 public IDictionary<string, object> GetProperties(string name)
 {
-  var entity = new
+  var data = new
   {
     id = 100,
     name = name
