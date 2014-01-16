@@ -96,7 +96,7 @@ pubilc Filter? GetFilter(string queryValue)
 For times when you need a list of properties contained in an object, the ```.ToDictionary()``` object extension method can be used. As the name suggests, this method will return the object property names and values as a dictionary.
 
 ```
-public string GetProperties(object data)
+public IDictionary<string, object> GetProperties(object data)
 {
   return data.ToDictionary();
 }
