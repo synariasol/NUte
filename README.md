@@ -49,6 +49,19 @@ public void Add(string name)
 
 Similarly, ```Verify.IsTrue()``` and ```Verify.IsFalse()``` methods are provided for boolean checks.
 
+Alternatively, if you need to throw a specific exception there are some generic methods available. To use these, an object is required that defines the parameter values for the exception constructor.
+
+```
+public void Add(string name)
+{
+  ...
+  
+  Verify.NotNull<CustomException>(() => dictionary, new { message = "No dictionary available", name = name });
+  
+  ...
+}
+```
+
 ## Enum Metadata
 
 On occasions it can be useful to extend an enum definition to include something more descriptive or even an alternative value. A particular scenario might be the use of a string value in a URL query string and using ```.ToString()``` on the enum value just isn't enough.
@@ -78,9 +91,20 @@ pubilc Filter? GetFilter(string queryValue)
 }
 ```
 
+## Object Dictionary
+
+For times when you need a list of properties contained in an object, the ```.ToDictionary()``` object extension method can be used. As the name suggests, this method will return the object property names and values as a dictionary.
+
+```
+public string GetProperties(object data)
+{
+  return data.ToDictionary();
+}
+```
+
 ## String Formatting
 
-A set of extension methods are available that build upon string formatting so named tokens can be used as placeholders. The values for these placeholders can be defined either using an anonymous object or an ```IDictionary<string, string>```.
+A set of extension methods are available that build upon string formatting so named tokens can be used as placeholders. The values for these placeholders can be defined either using an object or an ```IDictionary<string, string>```.
 
 ```
 public string GetRoute(int id, SortOptions sort)
