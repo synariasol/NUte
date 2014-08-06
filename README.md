@@ -2,6 +2,8 @@
 
 Pronounced 'Newt', this library is a set of utility and helper methods for common coding tasks. This includes runtime validations, enum metadata extensions, string formatting and primitive object serialization.
 
+#### ** NOTE: This library has been replaced by [NUte.Utils](https://github.com/synariasol/NUte.Utils) **
+
 ## Validation
 
 The validation aspects of the library provides runtime checks for both method arguments and object state.
